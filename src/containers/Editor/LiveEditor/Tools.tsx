@@ -25,7 +25,6 @@ import useGraph from "src/store/useGraph";
 import useJson from "src/store/useJson";
 import useModal from "src/store/useModal";
 import useStored from "src/store/useStored";
-import useUser from "src/store/useUser";
 import { getNextDirection } from "src/utils/graph/getNextDirection";
 import { isIframe } from "src/utils/widget";
 
@@ -106,7 +105,6 @@ export const Tools: React.FC<{ isWidget?: boolean }> = ({ isWidget = false }) =>
   const expandGraph = useGraph(state => state.expandGraph);
   const collapseGraph = useGraph(state => state.collapseGraph);
   const lightmode = useStored(state => state.lightmode);
-  const premium = useUser(state => state.premium);
   const setFormat = useFile(state => state.setFormat);
   const format = useFile(state => state.format);
 
@@ -276,12 +274,6 @@ export const Tools: React.FC<{ isWidget?: boolean }> = ({ isWidget = false }) =>
                 </Menu.Item>
               </Menu.Dropdown>
             </Menu>
-            <StyledToolElement title="Cloud" onClick={() => setVisible("cloud")(true)}>
-              Cloud
-            </StyledToolElement>
-            <StyledToolElement title="Download as File" onClick={handleSave}>
-              Download
-            </StyledToolElement>
           </Group>
         </MediaQuery>
       )}
@@ -292,18 +284,10 @@ export const Tools: React.FC<{ isWidget?: boolean }> = ({ isWidget = false }) =>
         <StyledToolElement title="Zoom In" onClick={zoomIn}>
           <AiOutlinePlus size="18" />
         </StyledToolElement>
-        {!isWidget && (
-          <StyledToolElement title="Save as Image" onClick={() => setVisible("download")(true)}>
-            <FiDownload size="18" />
-          </StyledToolElement>
-        )}
         <StyledToolElement title="Center Canvas" onClick={centerView}>
           <MdCenterFocusWeak size="18" />
         </StyledToolElement>
         <SearchInput />
-        <StyledToolElement title="Fullscreen" hide={isWidget} onClick={fullscreenBrowser}>
-          <AiOutlineFullscreen size="18" />
-        </StyledToolElement>
         <StyledToolElement
           title="Settings"
           hide={isWidget}
