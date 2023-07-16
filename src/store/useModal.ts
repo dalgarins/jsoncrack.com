@@ -10,7 +10,6 @@ interface ModalActions {
 }
 
 const initialStates: ModalState = {
-  clear: false,
   download: false,
   import: false,
   node: false,
@@ -19,7 +18,6 @@ const initialStates: ModalState = {
   premium: false,
   jwt: false,
   schema: false,
-  cancelPremium: false,
 };
 
 const useModal = create<ModalState & ModalActions>()(set => ({
