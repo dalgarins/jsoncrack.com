@@ -2,7 +2,6 @@ import React from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import { defaultJson } from "src/constants/data";
 import { BottomBar } from "src/containers/Editor/BottomBar";
 import { Tools } from "src/containers/Editor/LiveEditor/Tools";
 import Panes from "src/containers/Editor/Panes";
@@ -10,6 +9,7 @@ import { EditorMantine } from "src/layout/EditorMantine";
 import { Loading } from "src/layout/Loading";
 import useFile from "src/store/useFile";
 import useJson from "src/store/useJson";
+import HostEvent from "../events/host";
 
 export const StyledPageWrapper = styled.div`
   height: calc(100vh - 27px);
@@ -27,6 +27,7 @@ export const StyledEditorWrapper = styled.div`
 `;
 
 const EditorPage: React.FC = () => {
+  const { jsonCrackData = {}, sendMessageToHost }: any = window;
   const { isReady, query } = useRouter();
   const loading = useJson(state => state.loading);
   const setContents = useFile(state => state.setContents);
@@ -34,12 +35,12 @@ const EditorPage: React.FC = () => {
 
   React.useEffect(() => {
     if (isReady) {
-      if (typeof query?.url === "string") fetchUrl(query.url);
-      if (!query?.url && !query?.json) {
-        setContents({ contents: defaultJson, hasChanges: false });
+      setContents({ contents: jsonCrackData.file, hasChanges: false });
+      if (sendMessageToHost) {
+        sendMessageToHost(new HostEvent("init"));
       }
     }
-  }, [fetchUrl, isReady, query, setContents]);
+  }, [fetchUrl, isReady, jsonCrackData, query, sendMessageToHost, setContents]);
 
   if (loading) return <Loading message="Fetching JSON from cloud..." />;
 

@@ -3,9 +3,8 @@ import styled from "styled-components";
 import { Flex, Group, MediaQuery, Menu, Select, Text } from "@mantine/core";
 import { useHotkeys } from "@mantine/hooks";
 import toast from "react-hot-toast";
-import { AiOutlineFullscreen, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { CgArrowsMergeAltH, CgArrowsShrinkH, CgChevronDown } from "react-icons/cg";
-import { FiDownload } from "react-icons/fi";
 import { MdCenterFocusWeak } from "react-icons/md";
 import { SiJsonwebtokens } from "react-icons/si";
 import { TiFlowMerge } from "react-icons/ti";
@@ -190,10 +189,8 @@ export const Tools: React.FC<{ isWidget?: boolean }> = ({ isWidget = false }) =>
                 { value: FileFormat.TOML, label: "TOML" },
                 { value: FileFormat.CSV, label: "CSV" },
               ]}
+              disabled={true}
             />
-            <StyledToolElement title="Import File" onClick={() => setVisible("import")(true)}>
-              Import
-            </StyledToolElement>
             <Menu shadow="md" closeOnItemClick={false}>
               <Menu.Target>
                 <StyledToolElement>
