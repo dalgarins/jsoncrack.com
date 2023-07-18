@@ -189,10 +189,8 @@ export const Tools: React.FC<{ isWidget?: boolean }> = ({ isWidget = false }) =>
                 { value: FileFormat.TOML, label: "TOML" },
                 { value: FileFormat.CSV, label: "CSV" },
               ]}
+              disabled={true}
             />
-            <StyledToolElement title="Import File" onClick={() => setVisible("import")(true)}>
-              Import
-            </StyledToolElement>
             <Menu shadow="md" closeOnItemClick={false}>
               <Menu.Target>
                 <StyledToolElement>
