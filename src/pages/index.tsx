@@ -35,6 +35,7 @@ const EditorPage: React.FC = () => {
 
   React.useEffect(() => {
     if (isReady) {
+      setContents({ contents: "{}", hasChanges: false });
       setContents({ contents: jsonCrackData.file, hasChanges: false });
       if (sendMessageToHost) {
         sendMessageToHost(new HostEvent("init"));
